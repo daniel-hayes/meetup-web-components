@@ -124,6 +124,7 @@ class PopoverMenuOption extends React.Component {
 				onKeyDown={this.handleKeyDown}
 				onMouseOver={this.handleHover}
 				className={classNames}
+				role='menuitem'
 				tabIndex='-1'
 				{...other}
 			>
@@ -246,6 +247,7 @@ class PopoverMenu extends React.Component {
 				className={classNames}
 				role='menu'
 				tabIndex='-1'
+				aria-hidden={!active}
 				aria-expanded={active}
 				onKeyDown={this.handleKeys}
 				style={{bottom: verticalPlacement == 'top' ? `${height}px` : 'initial'}}
@@ -287,6 +289,7 @@ class PopoverContent extends React.Component {
 		return (
 			<div
 				className={classNames}
+				aria-hidden={!active}
 				aria-expanded={active}
 				style={{bottom: verticalPlacement == 'top' ? `${height}px` : 'initial'}}
 				{...other}
