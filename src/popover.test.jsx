@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import { IntlProvider } from 'react-intl';
-import PopoverContainer from './PopoverContainer';
+import Popover from './Popover';
 
-function intlRender(component) {
-	return TestUtils.renderIntoDocument(
-		<IntlProvider locale='en-US'>
-			{component}
-		</IntlProvider>
-	);
-}
-
-describe('PopoverContainer', function() {
+describe('Popover menu', function() {
 
 	it('exists', function() {
-		const popover = intlRender(<PopoverContainer />);
+		const popover = TestUtils.renderIntoDocument(<Popover />);
+		const popoverNode = ReactDOM.findDOMNode(popover);
+
+		expect(popoverNode).not.toBeNull();
+	});
+
+});
+
+describe('Popover container', function() {
+
+	it('exists', function() {
+		const popover = TestUtils.renderIntoDocument(<Popover />);
 		const popoverNode = ReactDOM.findDOMNode(popover);
 
 		expect(popoverNode).not.toBeNull();

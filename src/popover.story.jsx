@@ -1,7 +1,11 @@
 
 import React from 'react';
-import { Popover, PopoverTrigger, PopoverMenu, PopoverMenuOption, PopoverContent } from './Popover';
 import { storiesOf } from '@kadira/storybook';
+import Popover from './Popover';
+import PopoverTrigger from './PopoverTrigger';
+import PopoverMenu from './PopoverMenu';
+import PopoverMenuOption from './PopoverMenuOption';
+import PopoverContent from './PopoverContent';
 
 import {
 	Chunk,
