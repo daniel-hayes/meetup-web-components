@@ -27,7 +27,4 @@ class Chunk extends React.Component {
 	}
 }
 
-Chunk.propTypes = {
-};
-
 export default Chunk;

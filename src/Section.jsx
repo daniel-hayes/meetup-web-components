@@ -27,8 +27,4 @@ class Section extends React.Component {
 	}
 }
 
-Section.propTypes = {
-
-};
-
 export default Section;
