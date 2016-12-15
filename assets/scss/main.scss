@@ -6,4 +6,7 @@
 //
 @import "~sassquatch2/sass/sassquatch.scss";
 
-// [import partials here]
+// SQ2 candidates
+// (potentially component-level CSS)
+// split into component-level partials
+@import "popover.scss";
