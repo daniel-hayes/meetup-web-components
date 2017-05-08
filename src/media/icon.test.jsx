@@ -34,6 +34,18 @@ describe('Icon', () => {
 		it('creates SVG element', () => {
 			expect(() => TestUtils.findRenderedDOMComponentWithTag(icon, 'SVG')).not.toThrow();
 		});
+
+		it('should do something with componentWillMount()', () => {
+			Object.defineProperty(window, 'matchMedia', {
+				value: jest.fn(() => ({
+					matches: true,
+					addListener: jest.fn(),
+					removeListener: jest.fn()
+				})),
+			});
+
+			// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
+		});
 	});
 
 	describe('renders icon sizes correctly', () => {
