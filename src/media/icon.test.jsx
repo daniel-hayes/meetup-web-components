@@ -35,7 +35,7 @@ describe('Icon', () => {
 			expect(() => TestUtils.findRenderedDOMComponentWithTag(icon, 'SVG')).not.toThrow();
 		});
 
-		it('should do something with componentWillMount()', () => {
+		it('should do call addListener on componentWillMount()', () => {
 			Object.defineProperty(window, 'matchMedia', {
 				value: jest.fn(() => ({
 					matches: true,
@@ -46,7 +46,21 @@ describe('Icon', () => {
 
 			// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
 		});
+
+		it('should do call removeListener on componentWillUnmount()', () => {
+			Object.defineProperty(window, 'matchMedia', {
+				value: jest.fn(() => ({
+					matches: true,
+					addListener: jest.fn(),
+					removeListener: jest.fn()
+				})),
+			});
+
+			// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
+		});
+
 	});
+
 
 	describe('renders icon sizes correctly', () => {
 		const sizeChecker = (size) => {
