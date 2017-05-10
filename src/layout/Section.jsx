@@ -2,7 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 
 export const SECTION_CLASS = 'section';
-export const SECTION_PADDED_CLASS = 'section--padded';
+export const SECTION_NOSEPARATOR_CLASS = 'section--noSeparator';
+export const VALID_BREAKPOINTS = {
+	all: 'atAll',
+	medium: 'atMedium',
+	large: 'atLarge',
+};
+
 /**
  * Design System Component: Provides `section` container for components
  * @module Section
@@ -12,14 +18,16 @@ class Section extends React.Component {
 		const {
 			children,
 			className,
-			padded,
+			noSeparator,
 			...other
 		} = this.props;
+
+		const noSeparatorBreakpoint = VALID_BREAKPOINTS[noSeparator] || VALID_BREAKPOINTS['all'];
 
 		const classNames = cx(
 			SECTION_CLASS,
 			{
-				[SECTION_PADDED_CLASS]: padded
+				[`${noSeparatorBreakpoint}_${SECTION_NOSEPARATOR_CLASS}`]: noSeparator,
 			},
 			className
 		);
@@ -35,7 +43,10 @@ class Section extends React.Component {
 	}
 }
 Section.propTypes = {
-	padded:React.PropTypes.bool
+	noSeparator: React.PropTypes.oneOfType([
+		React.PropTypes.bool,
+		React.PropTypes.oneOf(Object.keys(VALID_BREAKPOINTS))
+	])
 };
 
 export default Section;
