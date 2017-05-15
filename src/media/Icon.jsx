@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { withMatchMedia } from '../utils/components/withMatchMedia';
 import {
 	MEDIA_SIZES,
 	MEDIA_QUERIES,
@@ -36,60 +37,15 @@ export const getScaleFactor = mediaMatches => {
  *
  * @module Icon
  */
-class Icon extends React.PureComponent {
-	constructor(props){
-		super(props);
-		this.handleMediaChange = this.handleMediaChange.bind(this);
-
-		this.state = {
-			iconScaleFactor: 1
-		};
-	}
-
-	handleMediaChange() {
-		if (!this.state.mediaQueries) {
-			return;
-		}
-
-		this.setState((state) => ({
-			iconScaleFactor: getScaleFactor({
-				isMedium: state.mediaQueries.medium.matches,
-				isLarge: state.mediaQueries.large.matches
-			})
-		}));
-	}
-
-	componentDidMount() {
-		if (window.matchMedia) {
-			this.setState(() => {
-				const mediaQueries = {
-					medium: window.matchMedia(MEDIA_QUERIES.medium),
-					large: window.matchMedia(MEDIA_QUERIES.large),
-				};
-
-				Object.keys(mediaQueries).forEach(mq =>
-					mediaQueries[mq].addListener(this.handleMediaChange)
-				);
-
-				return {
-					mediaQueries
-				};
-			});
-			this.handleMediaChange();
-		}
-	}
-
-	componentWillUnmount() {
-		Object.keys(this.state.mediaQueries).forEach(mq =>
-			this.state.mediaQueries[mq].removeListener(this.handleMediaChange)
-		);
-	}
+class IconBase extends React.PureComponent {
 
 	render() {
 		const {
 			className,
 			shape,
 			size,
+			isAtMediumUp,
+			isAtLargeUp,
 			...other
 		} = this.props;
 
@@ -99,8 +55,18 @@ class Icon extends React.PureComponent {
 			className
 		);
 
+		let icnScaleFactor = 1;
+
+		if (isAtMediumUp) {
+			icnScaleFactor = BREAKPOINT_MEDIA_SCALE_RATIOS.medium;
+		}
+
+		if (isAtLargeUp) {
+			icnScaleFactor = BREAKPOINT_MEDIA_SCALE_RATIOS.large;
+		}
+
 		const viewBox = size === 'auto' ? MEDIA_SIZES['xl'] : MEDIA_SIZES[size];
-		const dim = Math.floor(MEDIA_SIZES[size] * this.state.iconScaleFactor);
+		const dim = Math.floor(MEDIA_SIZES[size] * icnScaleFactor);
 
 		return (
 			<span className={classNames}>
@@ -119,13 +85,15 @@ class Icon extends React.PureComponent {
 	}
 }
 
-Icon.defaultProps = {
+IconBase.defaultProps = {
 	size: 's'
 };
 
-Icon.propTypes = {
+IconBase.propTypes = {
 	shape: React.PropTypes.string.isRequired,
 	size: React.PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl', 'auto'])
 };
+
+const Icon = withMatchMedia(IconBase, Object.keys(MEDIA_QUERIES));
 
 export default Icon;

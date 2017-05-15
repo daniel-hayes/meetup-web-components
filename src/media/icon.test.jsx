@@ -24,10 +24,24 @@ describe('Icon', () => {
 		afterEach(() => icon = null);
 
 		it('exists', () => {
+			Object.defineProperty(window, 'matchMedia', {
+				value: jest.fn(() => ({
+					matches: true,
+					addListener: jest.fn(),
+					removeListener: jest.fn()
+				})),
+			});
 			expect(() => TestUtils.findRenderedComponentWithType(icon, Icon)).not.toThrow();
 		});
 
 		it(`should have ${ICON_CLASS} icon styles`, () => {
+			Object.defineProperty(window, 'matchMedia', {
+				value: jest.fn(() => ({
+					matches: true,
+					addListener: jest.fn(),
+					removeListener: jest.fn()
+				})),
+			});
 			expect(() => TestUtils.findRenderedDOMComponentWithClass(icon, ICON_CLASS)).not.toThrow();
 		});
 
@@ -35,29 +49,29 @@ describe('Icon', () => {
 			expect(() => TestUtils.findRenderedDOMComponentWithTag(icon, 'SVG')).not.toThrow();
 		});
 
-		it('should do call addListener on componentWillMount()', () => {
-			Object.defineProperty(window, 'matchMedia', {
-				value: jest.fn(() => ({
-					matches: true,
-					addListener: jest.fn(),
-					removeListener: jest.fn()
-				})),
-			});
+		// it('should do call addListener on componentWillMount()', () => {
+		// 	Object.defineProperty(window, 'matchMedia', {
+		// 		value: jest.fn(() => ({
+		// 			matches: true,
+		// 			addListener: jest.fn(),
+		// 			removeListener: jest.fn()
+		// 		})),
+		// 	});
 
-			// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
-		});
+		// 	// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
+		// });
 
-		it('should do call removeListener on componentWillUnmount()', () => {
-			Object.defineProperty(window, 'matchMedia', {
-				value: jest.fn(() => ({
-					matches: true,
-					addListener: jest.fn(),
-					removeListener: jest.fn()
-				})),
-			});
+		// it('should do call removeListener on componentWillUnmount()', () => {
+		// 	Object.defineProperty(window, 'matchMedia', {
+		// 		value: jest.fn(() => ({
+		// 			matches: true,
+		// 			addListener: jest.fn(),
+		// 			removeListener: jest.fn()
+		// 		})),
+		// 	});
 
-			// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
-		});
+		// 	// const icon = TestUtils.findRenderedComponentWithType(icon, Icon);
+		// });
 
 	});
 
@@ -71,6 +85,8 @@ describe('Icon', () => {
 			});
 			const svgEl = TestUtils.findRenderedDOMComponentWithTag(icon, 'SVG');
 			const value = MEDIA_SIZES[size];
+			console.warn(icon.props);
+
 			expect(svgEl.getAttribute('width')).toEqual(value);
 			expect(svgEl.getAttribute('height')).toEqual(value);
 			if (size === 'auto') {
