@@ -146,3 +146,10 @@ $maxScalingBP: $breakpoint-m/1px;
 		border-width: 0;
 	}
 }
+
+.profileDropdown-content {
+	.list-item {
+		padding-top: $space-half !important;
+		padding-bottom: $space-half !important;
+	}
+}

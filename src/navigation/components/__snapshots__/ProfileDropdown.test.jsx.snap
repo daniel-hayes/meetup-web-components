@@ -2,7 +2,7 @@
 
 exports[`Profile Dropdown renders to DOM 1`] = `
 <Flex
-  className="header-profileDropdown-content align--left padding--all"
+  className="profileDropdown-content align--left padding--all"
   direction="row"
   justify="spaceBetween"
 >

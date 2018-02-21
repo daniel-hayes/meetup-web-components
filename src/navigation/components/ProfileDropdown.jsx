@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { C_TEXT_PRIMARYINVERTED } from 'swarm-constants/dist/js/colorConstants';
 
-
 import Chunk from '../../layout/Chunk';
 import Flex from '../../layout/Flex';
 import FlexItem from '../../layout/FlexItem';
@@ -10,7 +9,7 @@ import Icon from '../../media/Icon';
 
 // import { generateGroupUrl } from 'src/app/group/groupLinksHelper';
 
-export const PROFILE_CLASS = 'header-profileDropdown-content';
+export const PROFILE_CLASS = 'profileDropdown-content';
 export const PROFILE_GROUP_LIST_ITEM_CLASS = 'profileDropdown-content-group';
 
 /**
@@ -58,18 +57,12 @@ export const ProfileDropdownComponent = ({ profileUrl, groups }) => {
 			>
 				<ul className="list">
 					<li className="list-item">
-						<a href={profileUrl}>
-							Profile
-						</a>
+						<a href={profileUrl}>Profile</a>
 					</li>
 					<li className="list-item">
-						<a href="/account">
-							Settings
-						</a>
+						<a href="/account">Settings</a>
 					</li>
-					<li className="list-item">
-						Logout
-					</li>
+					<li className="list-item">Logout</li>
 				</ul>
 			</FlexItem>
 		</Flex>
