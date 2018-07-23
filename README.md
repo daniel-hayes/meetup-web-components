@@ -92,27 +92,19 @@ The overall workflow is:
 4. (if needed) Push changes to your `meetup-web-components` branch
 5. Repeat steps 2-3
 
-## Getting started
+### Components
 
-You can generate the boilerplate files for React components using
-`yarn run generate`, which invokes `src/utils/generate.js`.
-
-The command will prompt you for a 'type' (select from the list of options),
-and a 'name'. It generates the following files in `src/` :
-
+Component files live alongside their corresponding `.test` and `.story` files.
+For example:
 - `<ComponentName>.jsx` Component JSX module
 - `<componentName>.test.jsx` Component test script
 - `<componentName>.story.jsx` Storybook script
-
-### Components
-
-Located in the `src/` directory, component files live alongside
-their corresponding `.test` and `.story` files.
 
 Filename casing conventions:
 - Component files: `CamelCase`, with a leading capital, i.e. `RsvpTag.jsx`
 - Test files: `camelCase`, i.e. `rsvpTag.test.js`
 - Story files: `camelCase`, i.e. `rsvpTag.story.jsx`
+
 
 ### Redux Form Components
 
